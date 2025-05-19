@@ -156,17 +156,26 @@ void codec_shared_vector_compare(std::shared_ptr<dataT> value, size_t buffer_siz
   }
 }
 
-// TODO(unknown): update size check here
 template <typename dataT>
 void codec_vector_vector_compare(dataT& vectors, size_t buffer_size = 4096,
-                                 bool omit_size_check = true, bool omit_values_check = false) {
+                                 bool omit_size_check = false, bool omit_values_check = false) {
   // need buffer_size large enough to hold any tested type
   auto endpoint = std::make_shared<MockUcxSerializationBuffer>(
       buffer_size, holoscan::Endpoint::MemoryStorageType::kSystem);
 
   auto maybe_size = codec<dataT>::serialize(vectors, endpoint.get());
   EXPECT_EQ(typeid(maybe_size.value()), typeid(size_t));
-  if (!omit_size_check) { throw std::runtime_error("size check not implemented for this type"); }
+  if (!omit_size_check) {
+    size_t expected_size = sizeof(size_t);  // number of vectors
+    using vectorT = typename dataT::value_type;
+    for (const auto& vec : vectors) {
+      auto tmp_endpoint = std::make_shared<MockUcxSerializationBuffer>(
+          buffer_size, holoscan::Endpoint::MemoryStorageType::kSystem);
+      auto maybe_vec_size = codec<vectorT>::serialize(vec, tmp_endpoint.get());
+      expected_size += maybe_vec_size.value();
+    }
+    EXPECT_EQ(maybe_size.value(), expected_size);
+  }
 
   auto maybe_vectors = codec<dataT>::deserialize(endpoint.get());
   auto result = maybe_vectors.value();
@@ -185,10 +194,9 @@ void codec_vector_vector_compare(dataT& vectors, size_t buffer_size = 4096,
   }
 }
 
-// TODO(unknown): update size check here
 template <typename dataT>
 void codec_shared_vector_vector_compare(std::shared_ptr<dataT> vectors, size_t buffer_size = 4096,
-                                        bool omit_size_check = true,
+                                        bool omit_size_check = false,
                                         bool omit_values_check = false) {
   // need buffer_size large enough to hold any tested type
   auto endpoint = std::make_shared<MockUcxSerializationBuffer>(
@@ -196,7 +204,17 @@ void codec_shared_vector_vector_compare(std::shared_ptr<dataT> vectors, size_t b
 
   auto maybe_size = codec<std::shared_ptr<dataT>>::serialize(vectors, endpoint.get());
   EXPECT_EQ(typeid(maybe_size.value()), typeid(size_t));
-  if (!omit_size_check) { throw std::runtime_error("size check not implemented for this type"); }
+  if (!omit_size_check) {
+    size_t expected_size = sizeof(size_t);  // number of vectors
+    using vectorT = typename dataT::value_type;
+    for (const auto& vec : *vectors) {
+      auto tmp_endpoint = std::make_shared<MockUcxSerializationBuffer>(
+          buffer_size, holoscan::Endpoint::MemoryStorageType::kSystem);
+      auto maybe_vec_size = codec<vectorT>::serialize(vec, tmp_endpoint.get());
+      expected_size += maybe_vec_size.value();
+    }
+    EXPECT_EQ(maybe_size.value(), expected_size);
+  }
 
   auto maybe_vectors = codec<std::shared_ptr<dataT>>::deserialize(endpoint.get());
   auto result = maybe_vectors.value();
