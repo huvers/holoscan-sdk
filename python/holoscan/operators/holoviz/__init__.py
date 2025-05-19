@@ -237,11 +237,11 @@ class HolovizOp(_HolovizOp):
             if "image_format" in tensor:
                 image_format = tensor["image_format"]
                 if isinstance(image_format, str):
-                    image_format.lower()
+                    image_format = image_format.lower()
                     if image_format not in _holoviz_str_to_image_format:
                         raise ValueError(f"unrecognized image_format name: {image_format}")
                     image_format = _holoviz_str_to_image_format[image_format]
-                elif not isinstance(input_type, _HolovizOp.ImageFormat):
+                elif not isinstance(image_format, _HolovizOp.ImageFormat):
                     raise ValueError(
                         "value corresponding to key 'image_format' must be either a "
                         "HolovizOp.ImageFormat object or one of the following "
@@ -276,7 +276,7 @@ class HolovizOp(_HolovizOp):
             if "depth_map_render_mode" in tensor:
                 depth_map_render_mode = tensor["depth_map_render_mode"]
                 if isinstance(depth_map_render_mode, str):
-                    depth_map_render_mode.lower()
+                    depth_map_render_mode = depth_map_render_mode.lower()
                     if depth_map_render_mode not in _holoviz_str_to_depth_map_render_mode:
                         raise ValueError(
                             f"unrecognized depth_map_render_mode name: {depth_map_render_mode}"
@@ -284,7 +284,7 @@ class HolovizOp(_HolovizOp):
                     depth_map_render_mode = _holoviz_str_to_depth_map_render_mode[
                         depth_map_render_mode
                     ]
-                elif not isinstance(input_type, _HolovizOp.DepthMapRenderMode):
+                elif not isinstance(depth_map_render_mode, _HolovizOp.DepthMapRenderMode):
                     raise ValueError(
                         "value corresponding to key 'depth_map_render_mode' must be either a "
                         "HolovizOp.DepthMapRenderMode object or one of the following "
@@ -297,7 +297,7 @@ class HolovizOp(_HolovizOp):
             if "yuv_model_conversion" in tensor:
                 yuv_model_conversion = tensor["yuv_model_conversion"]
                 if isinstance(yuv_model_conversion, str):
-                    yuv_model_conversion.lower()
+                    yuv_model_conversion = yuv_model_conversion.lower()
                     if yuv_model_conversion not in _holoviz_str_to_yuv_model_conversion:
                         raise ValueError(
                             f"unrecognized yuv_model_conversion name: {yuv_model_conversion}"
@@ -305,7 +305,7 @@ class HolovizOp(_HolovizOp):
                     yuv_model_conversion = _holoviz_str_to_yuv_model_conversion[
                         yuv_model_conversion
                     ]
-                elif not isinstance(input_type, _HolovizOp.YuvModelConversion):
+                elif not isinstance(yuv_model_conversion, _HolovizOp.YuvModelConversion):
                     raise ValueError(
                         "value corresponding to key 'yuv_model_conversion' must be either a "
                         "HolovizOp.YuvModelConversion object or one of the following "
@@ -318,11 +318,11 @@ class HolovizOp(_HolovizOp):
             if "yuv_range" in tensor:
                 yuv_range = tensor["yuv_range"]
                 if isinstance(yuv_range, str):
-                    yuv_range.lower()
+                    yuv_range = yuv_range.lower()
                     if yuv_range not in _holoviz_str_to_yuv_range:
                         raise ValueError(f"unrecognized yuv_range name: {yuv_range}")
                     yuv_range = _holoviz_str_to_yuv_range[yuv_range]
-                elif not isinstance(input_type, _HolovizOp.YuvRange):
+                elif not isinstance(yuv_range, _HolovizOp.YuvRange):
                     raise ValueError(
                         "value corresponding to key 'yuv_range' must be either a "
                         "HolovizOp.YuvRange object or one of the following "
@@ -335,13 +335,13 @@ class HolovizOp(_HolovizOp):
             if "x_chroma_location" in tensor:
                 x_chroma_location = tensor["x_chroma_location"]
                 if isinstance(x_chroma_location, str):
-                    x_chroma_location.lower()
+                    x_chroma_location = x_chroma_location.lower()
                     if x_chroma_location not in _holoviz_str_to_chroma_location:
                         raise ValueError(
                             f"unrecognized x_chroma_location name: {x_chroma_location}"
                         )
                     x_chroma_location = _holoviz_str_to_chroma_location[x_chroma_location]
-                elif not isinstance(input_type, _HolovizOp.ChromaLocation):
+                elif not isinstance(x_chroma_location, _HolovizOp.ChromaLocation):
                     raise ValueError(
                         "value corresponding to key 'x_chroma_location' must be either a "
                         "HolovizOp.ChromaLocation object or one of the following "
@@ -354,13 +354,13 @@ class HolovizOp(_HolovizOp):
             if "y_chroma_location" in tensor:
                 y_chroma_location = tensor["y_chroma_location"]
                 if isinstance(y_chroma_location, str):
-                    y_chroma_location.lower()
+                    y_chroma_location = y_chroma_location.lower()
                     if y_chroma_location not in _holoviz_str_to_chroma_location:
                         raise ValueError(
                             f"unrecognized y_chroma_location name: {y_chroma_location}"
                         )
                     y_chroma_location = _holoviz_str_to_chroma_location[y_chroma_location]
-                elif not isinstance(input_type, _HolovizOp.ChromaLocation):
+                elif not isinstance(y_chroma_location, _HolovizOp.ChromaLocation):
                     raise ValueError(
                         "value corresponding to key 'y_chroma_location' must be either a "
                         "HolovizOp.ChromaLocation object or one of the following "
