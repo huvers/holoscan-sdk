@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.20)
+project(holoscan_external_memory CXX)
+
+find_package(holoscan REQUIRED CONFIG PATHS "/opt/nvidia/holoscan" "/workspace/holoscan-sdk/install")
+
+add_executable(external_memory
+  external_memory.cpp
+)
+
+target_link_libraries(external_memory
+  PRIVATE
+  holoscan::core
+)
+
+if(BUILD_TESTING)
+  add_test(NAME EXAMPLE_CPP_EXTERNAL_MEMORY_TEST
+           COMMAND external_memory
+           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+          )
+endif()

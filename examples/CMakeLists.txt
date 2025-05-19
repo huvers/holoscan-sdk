@@ -96,6 +96,7 @@ add_subdirectory(video_replayer)
 add_subdirectory(video_replayer_distributed)
 add_subdirectory(custom_cuda_kernel_1d_sample)
 add_subdirectory(custom_cuda_kernel_multi_sample)
+add_subdirectory(external_memory)
 
 if(HOLOSCAN_INSTALL_EXAMPLE_SOURCE)
 
