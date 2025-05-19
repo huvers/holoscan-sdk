@@ -268,7 +268,7 @@ class GXFExecutor : public holoscan::Executor {
   /** @brief Initialize all GXF Resources in the map and assign them to graph_entity.
    *
    *  Utility function grouping common code across `initialize_network_context` and
-   *  `intialize_scheduler`.
+   *  `initialize_scheduler`.
    *
    * @param resources Unordered map of GXF resources.
    * @param eid The entity to which the resources will be assigned.
