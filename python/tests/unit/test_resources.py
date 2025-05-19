@@ -458,7 +458,7 @@ class TestUcxHoloscanComponentSerializer:
 
 
 class TestUcxEntitySerializer:
-    def test_intialization_default_serializers(self, app, capfd):
+    def test_initialization_default_serializers(self, app, capfd):
         name = "ucx_entity_serializer"
         res = UcxEntitySerializer(
             fragment=app,
