@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(pointer_transfer_benchmark)
+find_package(holoscan REQUIRED COMPONENTS core)
+add_executable(pointer_transfer_benchmark pointer_transfer_benchmark.cpp)
+target_link_libraries(pointer_transfer_benchmark PRIVATE holoscan::core)

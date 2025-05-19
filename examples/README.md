@@ -57,9 +57,10 @@ The following examples demonstrate the basics of the Holoscan core API, and are 
 4. [**Distributed Video Replayer**](video_replayer_distributed): switch the source/sink from Tx/Rx
    to loading a video from disk and displaying its frames, with a distributed application
 5. [**Flow Tracker**](flow_tracker): simple application demonstrating data flow tracking for latency analysis
-6. [**Custom CUDA kernel 1d**](custom_cuda_kernel_1d_sample): application demonstrating ingestion of 1D custom CUDA kernel in Holoscan SDK
-7. [**Custom CUDA kernel multi sample**](custom_cuda_kernel_multi_sample): application demonstrating ingestion of multiple custom CUDA kernels of multi dimension in Holoscan SDK
-8. [**Flow Control**](flow_control): demonstrate how to control dynamic operator execution flow in a pipeline (e.g. condition flow paths and loops)
+6. [**Pointer Transfer Benchmark**](pointer_transfer_benchmark): measure raw vs shared pointer message passing
+7. [**Custom CUDA kernel 1d**](custom_cuda_kernel_1d_sample): application demonstrating ingestion of 1D custom CUDA kernel in Holoscan SDK
+8. [**Custom CUDA kernel multi sample**](custom_cuda_kernel_multi_sample): application demonstrating ingestion of multiple custom CUDA kernels of multi dimension in Holoscan SDK
+9. [**Flow Control**](flow_control): demonstrate how to control dynamic operator execution flow in a pipeline (e.g. condition flow paths and loops)
 
 ## Core: additional configurations
 
